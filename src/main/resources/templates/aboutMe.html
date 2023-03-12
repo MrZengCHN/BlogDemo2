@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head th:replace="~{_fragments :: head(~{::title})}">
+    <meta charset="UTF-8">
+    <title>关于我</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <link href="/static/css/me.css" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="~{_fragments :: menu(5)}">
+
+</nav>
+<!--中间内容-->
+<div class="ui animate__animated animate__fadeIn">
+    <br>
+    <div class="ui stackable container grid">
+        <div class="ui eleven wide column">
+            <div class="ui segment">
+                <img class="ui rounded image" src="../static/images/头像.jpg" th:src="@{/images/头像.jpg}">
+            </div>
+        </div>
+        <div class="ui five wide column">
+            <div class="ui segments">
+                <div class="ui center aligned segment">
+                    <h4 class="header">关于我</h4>
+                </div>
+                <div class="ui segment">
+                    <p>
+                        曾宪斌，山东省本科毕业生，小程序猿；终身学习者，喜欢倒腾各种新奇好玩的东西，不断学习让我感到充实！
+                    </p>
+                    <p>
+                        喜欢编程，喜欢探索，喜欢摸鱼！
+                    </p>
+                    <p>
+                        也希望能够去那些舒适自由的岗位工作，交流并学习各种计算机编程技术！
+                    </p>
+                </div>
+                <div class="ui segment">
+                    <div class="ui large orange label m-margin-mini">
+                        编程
+                    </div>
+                    <div class="ui large orange label m-margin-mini">
+                        运动
+                    </div>
+                    <div class="ui large orange label m-margin-mini">
+                        思考
+                    </div>
+                    <div class="ui large orange label m-margin-mini">
+                        写作
+                    </div>
+                    <div class="ui large orange label m-margin-mini">
+                        游戏
+                    </div>
+                    <div class="ui large orange label m-margin-mini">
+                        干饭
+                    </div>
+                </div>
+                <div class="ui segment">
+                    <div class="ui basic blue large label m-margin-mini">
+                        Java
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        Python
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        Cpp
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        HTML5
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        CSS3
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        Spring
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        Spring-MVC
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        SpringBoot
+                    </div>
+
+                    <div class="ui basic blue large label m-margin-mini">
+                        MySQL
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        Linux
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        Kali-Linux
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        Hadoop
+                    </div>
+                    <div class="ui basic blue large label m-margin-mini">
+                        Zookeeper
+                    </div>
+                </div>
+
+                <div class="ui center aligned segment">
+                    <!--微信按钮-->
+                    <button class="ui icon button" id="WeChatButton">
+                        <i class="wechat icon"></i>
+                    </button>
+                    <div class="ui MakeFriendByWechat popup transition hidden">
+                        <img class="ui small image" src="../static/images/weixin.png" th:src="@{/images/weixin.png}">
+                    </div>
+                    <!--QQ按钮-->
+                    <button class="ui icon button" id="QQButton">
+                        <i class="qq icon"></i>
+                    </button>
+                    <div class="ui MakeFriendByQQ popup transition hidden">
+                        <h2 class="ui header">QQ:1164334031</h2>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+<!--底部-->
+<footer th:replace="~{_fragments :: footer}">
+
+</footer>
+</body>
+<th:block th:replace="~{_fragments :: script}">
+
+</th:block>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('#PayButton').popup({
+        popup: $('.PayQR.popup'),
+        position: 'top center'
+    });
+    $('#WeChatButton').popup({
+        popup: $('.MakeFriendByWechat.popup'),
+        on: 'click',
+        position: 'top center'
+    });
+    $('#QQButton').popup({
+        popup: $('.MakeFriendByQQ.popup'),
+        on: 'click',
+        position: 'top center'
+    })
+
+</script>
+</html>

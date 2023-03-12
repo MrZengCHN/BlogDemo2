@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments :: head(~{::title})}">
+    <meta charset="UTF-8">
+    <title>归档</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <link href="/static/css/me.css" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="~{_fragments :: menu(4)}">
+</nav>
+<!--中间内容-->
+<div class="ui animate__animated animate__fadeIn">
+    <br>
+    <div class="ui container">
+        <!--分类-->
+        <!--类别标签-->
+        <div class="ui segment">
+            <div class="ui two column center aligned grid">
+                <div class="column">
+                    <h3 class="ui teal header">历史文章</h3>
+                </div>
+                <div class="column">
+                    共 <h3 class="ui orange header m-inline-block" th:text="${blogCount}"></h3> 篇
+                </div>
+            </div>
+        </div>
+        <!--年份-->
+
+        <div class="ui basic segment">
+            <!--单个年份-->
+            <th:block th:each="year:${years}">
+                <th:block th:if="${!#arrays.isEmpty(year.blogs)}">
+                    <div class="ui basic segment">
+                        <h2 class="ui center aligned teal header" th:text="${year.year}">2020</h2>
+                        <div class="ui fluid vertical menu">
+                            <!--单个-->
+                            <th:block th:each="blog:${year.blogs}">
+                                <a class="item" th:href="@{/blog(blogId=${blog.id})}">
+                        <span>
+                            <i class="teal circle icon"></i><th:block th:text="${blog.title}"></th:block>
+                        </span>
+                                    <div class="ui  orange label" th:text="${blog.flag}">
+
+                                    </div>
+                                    <div class="ui  blue basic label"
+                                         th:text="${#temporals.format(blog.updateTime,'yyyy-MM-dd')}">
+                                    </div>
+                                </a>
+
+                            </th:block>
+                        </div>
+                    </div>
+
+                </th:block>
+            </th:block>
+
+
+        </div>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+<!--底部-->
+<footer th:replace="~{_fragments :: footer}">
+
+</footer>
+</body>
+<th:block th:replace="~{_fragments :: script}">
+
+</th:block>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('#PayButton').popup({
+        popup: $('.PayQR.popup'),
+        position: 'top center'
+    });
+
+
+</script>
+</html>

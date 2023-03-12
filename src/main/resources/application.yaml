@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://43.143.207.78/MyBlog?serverTimezone=Asia/Shanghai&useUnicode=utf8&useSSL=false
+    username: root
+    password: zeng010718
+  mail:
+    protocol: smtp
+    host: smtp.163.com
+    port: 25
+    username: mrzeng1164334031@163.com
+    password: ZOLGFFUIHYMICQAX
+    default-encoding: utf-8
+    properties:
+      mail:
+        debug: false
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      table-prefix: t_
+server:
+  port: 80

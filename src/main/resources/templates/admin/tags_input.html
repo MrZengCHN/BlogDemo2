@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{_admin::head(~{::title})}">
+    <meta charset="UTF-8">
+    <title>发布</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <link href="/static/css/me.css" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="~{_admin::menu(3)}">
+
+</nav>
+<div class="ui teal attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a class="active item" th:href="@{/admin/tagsInput}">新增标签</a>
+            <a class="item" th:href="@{/admin/tags}">管理</a>
+        </div>
+    </div>
+</div>
+<!--中间内容-->
+<br>
+
+<div class="animate__animated animate__fadeIn">
+    <form class="ui form">
+        <div class="ui center aligned stackable container grid">
+            <!--新增标签-->
+            <div class="ui fourteen wide column">
+                <div class="field">
+                    <div class="ui left labeled icon input">
+                        <div class="ui basic blue label">
+                            <div class="text">新增标签</div>
+                        </div>
+                        <input id="name" name="name" placeholder="标签名称" type="text">
+                        <i class="tags icon"></i>
+                    </div>
+                </div>
+            </div>
+            <!--博客内容输入区域-->
+            <div class="ui fourteen wide column">
+                <div class="ui two column grid">
+                    <div class="column">
+
+                    </div>
+                    <div class="right floated five wide column">
+                        <button class="ui button" onclick="window.history.go(-1)" type="button">返回</button>
+                        <button class="ui teal button" id="typeSubmit" type="button">发布</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="ui container">
+        <div class="ui center aligned grid">
+            <div class="ui fourteen wide column" id="MessageDiv">
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<!--底部-->
+<footer th:replace="~{_admin::footer}">
+
+</footer>
+</body>
+<th:block th:replace="~{_admin::script}">
+
+</th:block>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    /*表单验证*/
+    $('#typeSubmit').click(function () {
+        $.ajax({
+            url: "/admin/tagInput",
+            type: "POST",
+            data: {
+                name: $('#name').val()
+            },
+            resultType: "JSON",
+            success: function (result) {
+                const Message = document.getElementById("MessageDiv")
+                if (result.code === 200) {
+                    Message.innerHTML = "<div class=\"ui success message\">\n" +
+                        "  <div class=\"header\">添加成功!</div>" +
+                        "</div>"
+                } else {
+                    Message.innerHTML = "<div class=\"ui negative message\">\n" +
+                        "  <div class=\"header\">" +
+                        "" + result.message +
+                        "</div>\n" +
+                        "  </div>"
+                }
+            },
+            error: function (result) {
+                alert(result.message);
+            }
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_admin::head(~{::title})}">
+    <meta charset="UTF-8">
+    <title>标签管理</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+</head>
+<body>
+<nav th:replace="~{_admin::menu(3)}">
+
+</nav>
+<!--中间内容-->
+<div class="animate__animated animate__fadeIn">
+    <div class="ui teal attached pointing menu">
+        <div class="ui container">
+            <div class="right menu">
+                <a class="item" href="blogs_input.html" th:href="@{/admin/tagsInput}">新增标签</a>
+                <a class="active item" href="blogs.html" th:href="@{/admin/tags}">管理</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <br>
+        <div class="ui basic container grid segment">
+            <table class="ui center aligned basic celled table">
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>标签</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each=" tag ,iterStat : ${tags} ">
+                    <td><span th:text="${iterStat.count}"></span></td>
+                    <td><span th:text="${tag.name}"></span></td>
+                    <td>
+                        <button class="ui teal mini button UpdateTypeButton"
+                                th:onclick="'SetUpdateTagId(\''+${tag.id}+'\')'"
+                                type="button">编辑
+                        </button>
+                        <button class="ui red mini button DeleteTypeButton"
+                                th:onclick="'SetDeleteId(\''+${tag.id}+'\')'"
+                                type="button">删除
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th class="ui center aligned" colspan="6">
+
+                        <div class="ui mini pagination menu">
+                            <a class="item" th:href="@{/admin/tags(page=${page}-1)}">
+                                <i class="left chevron icon"></i>
+                            </a>
+                            <th:block th:each="pagei:${pages}">
+                                <a class="item" th:classappend="${page == pagei} ? 'active'"
+                                   th:href="@{/admin/tags(page=${pagei})}" th:text="${pagei}"></a>
+                            </th:block>
+                            <a class="item" th:href="@{/admin/tags(page=${page}+1)}">
+                                <i class="right chevron icon"></i>
+                            </a>
+                        </div>
+                    </th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="ui mini modal" id="removePositive">
+        <div class="ui center aligned segment">
+            <h3 class="ui header">是否确认删除该标签？</h3>
+            <div class="ui divider"></div>
+            <div class="actions">
+                <div class="ui two column grid">
+                    <div class="column">
+                        <button class="ui black deny button">返回</button>
+                    </div>
+                    <div class="column">
+                        <button class="ui black positive button" onclick="removeTag()">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui mini modal" id="updateTagPositive">
+        <div class="ui center aligned segment">
+            <div class="ui labeled input">
+                <div class="ui basic blue label">修改标签名：</div>
+                <input class="ui input" id="updateName" type="text">
+            </div>
+            <div class="ui divider">
+            </div>
+            <div class="actions">
+                <div class="ui two column grid">
+                    <div class="ui center aligned column">
+                        <div class="ui black deny button">
+                            返回
+                        </div>
+                    </div>
+                    <div class="ui center aligned column">
+                        <div class="ui teal positive button" onclick="updateTag()">
+                            保存
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--底部-->
+<footer th:replace="~{_admin::footer}">
+
+</footer>
+</body>
+<th:block th:replace="~{_admin::script}">
+
+</th:block>
+<script>
+    let id = 0;
+
+    function SetUpdateTagId(UpdateId) {
+        id = UpdateId
+        $('#updateTagPositive').modal('show')
+    }
+
+    function SetDeleteId(Cid) {
+        id = Cid
+        $('#removePositive').modal('show')
+    }
+
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('#UserMenuButton').popup({
+        popup: $('.UserMenu.popup'),
+        on: 'click',
+        position: 'bottom center'
+    });
+    $('.ui.dropdown').dropdown();
+    $('.DeleteTypeButton').click(function () {
+        console.log(this)
+    })
+
+    function removeTag() {
+        $.ajax({
+            url: "/admin/deleteTagById",
+            type: "POST",
+            data: {
+                id: id
+            },
+            resultType: "JSON",
+            success: function (result) {
+                if (result.code === 200) {
+                    alert("删除成功")
+                    window.location.replace("/admin/tags")
+                } else {
+                    alert(result.message)
+                }
+            },
+            error: function () {
+                alert("错误！")
+            }
+        })
+    }
+
+    function updateTag() {
+        $.ajax({
+            url: "/admin/updateTagById",
+            type: "POST",
+            data: {
+                id: id,
+                name: $('#updateName').val()
+            },
+            resultType: "JSON",
+            success: function (result) {
+                if (result.code === 200) {
+                    alert("修改成功！")
+                    window.location.replace("/admin/tags")
+                } else {
+                    alert(result.message)
+                }
+            },
+            error: function () {
+                alert("错误！")
+            }
+        })
+    }
+</script>
+</html>

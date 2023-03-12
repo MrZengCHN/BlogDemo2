@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>关于我</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/me.css}">
+</head>
+<body>
+<nav th:replace="~{_fragments :: menu(6)}">
+
+</nav>
+<!--中间内容-->
+<br>
+<br>
+<br>
+<div class="ui animate__animated animate__fadeIn container">
+    <div class="ui attached segment">
+        <div class="ui basic segment">
+            <div class="ui two column grid">
+                <div class="eleven wide column">
+                    <h3 class="ui blue header" style="font-size: 24px">曾宪斌</h3>
+                    <p style="font-size:13px">
+                        <span style="font-weight: bold">求职岗位：Java开发工程师</span>
+                        <span>目标薪资：6k~8k</span>
+                    </p>
+                    <div class="ui two column grid">
+                        <div class="column">
+                            <p>
+                                <span>年龄：22</span><br>
+                                <span>籍贯：山东济宁</span><br>
+                                <span>电话：19862318400</span>
+                            </p>
+                        </div>
+                        <div class="column">
+                            <p>
+                                <span>性别：男</span><br>
+                                <span>工作年限：半年经验</span><br>
+                                <span>邮箱：1164334031@qq.com</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="five wide column">
+                    <div class="ui center aligned basic segment">
+                        <img th:src="@{/images/头像.jpg}" class="ui small image" alt="">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="ui inverted basic blue segment m-padded-mini">
+                    <h4 class="ui header" style="margin-left: 30px">教育背景</h4>
+                </div>
+                <div class="ui container">
+                    <div class="ui three column grid">
+                        <div class="ui center aligned column">
+                            <h4>2019-9~2023-6</h4>
+                        </div>
+                        <div class="ui center aligned column">
+                            <h4>曲阜师范大学</h4>
+                        </div>
+                        <div class="ui center aligned column">
+                            <h4>网络工程</h4>
+                        </div>
+                    </div>
+                    <br>
+                    <p>
+                        <span style="font-weight: bold">专业成绩：</span>
+                        <span>(GPA) 2.0</span>
+                    </p>
+                    <p>
+                        <span style="font-weight: bold">主修课程：</span>
+                        <span>C语言程序设计，C++面向对象的程序设计，Java程序设计，计算机导论，数据结构，计算机组成原理，高等数学，离散数学，操作系统，密码学，计算机网络，Web程序设计基础，算法设计与分析，LINUX操作系统，网络协议分析，云计算技术及应用，Python程序设计，网络工程，网络信息安全，通信原理等。</span>
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="ui inverted basic blue segment m-padded-mini">
+                    <h4 class="ui header" style="margin-left: 30px">实习经验</h4>
+                </div>
+                <div class="ui container">
+                    <div class="ui three column grid">
+                        <div class="ui center aligned column">
+                            <h4>2022-6~2023-3</h4>
+                        </div>
+                        <div class="ui center aligned column">
+                            <h4>日照俊峰嘉美科技有限公司</h4>
+                        </div>
+                        <div class="ui center aligned column">
+                            <h4>Java全栈开发工程师</h4>
+                        </div>
+                    </div>
+                    <br>
+                    <ul>
+                        <li>负责前端与后端开发</li>
+                        <li>负责学生指导</li>
+                        <li>协助完成项目部署</li>
+                        <li>协助完成公司项目开发</li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="ui inverted basic blue segment m-padded-mini">
+                    <h4 class="ui header" style="margin-left: 30px">项目经验</h4>
+                </div>
+                <div class="ui container">
+                    <div class="ui container">
+                        <div class="ui three column grid">
+                            <div class="ui center aligned column">
+                                <h4>2021-7~2021-8</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>花店管理系统</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>前端和后端开发</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <p>
+                            <span>&ensp;&ensp;&ensp;&ensp;该系统是由我和队员一同完成开发，主要实现了一个类似于销售管理的浏览器/服务器（B/S）管理系统，该系统大部分功能实现由我完成。其中浏览器作为客户端，用于向服务器发送请求并接收响应。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;该系统后端使用Python Django框架完成开发，由于时间紧任务重，我用了三天时间熟悉Django框架的使用，又使用了4天时间来进行开发。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;该系统主要使用pyMysql驱动来对数据库进行增删改查操作，业务逻辑相对简单，但对运行环境略有要求，移植性并不高。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;系统前端设计主要参考和借鉴了GitHub上的AdminLTE，简洁大方，功能多且完善。但上手难度并不低，需要阅读源码来实现功能。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;功能介绍：</span>
+                        </p>
+                        <ul>
+                            <li>管理员登录验证，md5加密解密</li>
+                            <li>登录登出操作</li>
+                            <li>后台管理系统的滑动响应式菜单栏</li>
+                            <li>管理员账号权限管理（CRUD）</li>
+                            <li>用户管理（CRUD）</li>
+                            <li>花卉管理（CRUD）</li>
+                            <li>供货商管理（CRUD）</li>
+                            <li>分页读取</li>
+                        </ul>
+                        <div class="ui divider"></div>
+                    </div>
+                    <div class="ui container">
+                        <div class="ui three column grid">
+                            <div class="ui center aligned column">
+                                <h4>2022-8~2022-9</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>公司选座系统</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>前端和后端开发</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <p>
+                            <span>&ensp;&ensp;&ensp;&ensp;该系统由我和同事一同完成，实现了类似选座位（小程序）的一个公司内部使用的选座预约系统。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;该系统后端SpringBoot，Mybatis，前端使用了UI框架Semantic和jQuery.js来进行操作。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;该项目相对成熟，实现较为简单，通过Mybatis来对数据库进行CRUD操作非常快捷直观，借鉴了其他的选座预约系统的业务逻辑，业务逻辑清晰，代码结构清晰。</span><br>
+                            <span>功能介绍：</span>
+                        </p>
+                        <ul>
+                            <li>管理员（最高权限）登录</li>
+                            <li>教室创建者登录（教师权限）登录</li>
+                            <li>学生登录（学生权限）登录</li>
+                            <li>管理员对所有可操作的基本信息进行操作（CRUD）</li>
+                            <li>教师权限用户对所有其创建的基本信息进行操作（CRUD）</li>
+                            <li>学生权限用户对个人信息的操作（CRU）</li>
+                            <li>学生权限用户对教师创建的教室信息的操作（RU）</li>
+                            <li>所有用户的登录登出功能</li>
+                        </ul>
+                        <div class="ui divider"></div>
+                    </div>
+                    <div class="ui container">
+                        <div class="ui three column grid">
+                            <div class="ui center aligned column">
+                                <h4>2022-8~2022-9</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>个人博客系统</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>前端和后端开发</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <p>
+                            <span>&ensp;&ensp;&ensp;&ensp;该系统由我个人开发，实现了个人博客的前端展示，和后端管理。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;该系统后端SpringBoot，MybatisPlus，前端使用了UI框架Semantic和jQuery.js来进行操作。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;该项目在之前的经验和基础上进一步实现了一个更完善的Web应用，使用了MybatisPlus来对持久层进行管理，通过MybatisPlus中内置的实现方法更加便捷高效地完成对数据库的增删改查分页等操作。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;在之前的基础上对登录操作进行完善，增加了更多的前端动画效果和前端展示效果，给用户和游客提供了更好的使用体验。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;增加了评论防护措施，即评论限制，游客需要验证邮箱而不需要注册账号即可评论，更加便捷游客的体验和保护游客的隐私。</span><br>
+                            <span>&ensp;&ensp;&ensp;&ensp;增加了登录防护措施，即Session验证，保护了后台的安全。该项目现已部署在公网，暂无域名。链接：43.143.207.78</span><br>
+                            <span>功能介绍：</span><br>
+                        </p>
+                        <ul>
+                            <li>管理员（最高权限）登录</li>
+                            <li>博客的CRUD操作</li>
+                            <li>博客基本属性的CRUD的操作</li>
+                            <li>博客查询功能，根据字段进行模糊查询，根据类别，标签进行分页查询。</li>
+                        </ul>
+                        <div class="ui divider"></div>
+                    </div>
+
+                </div>
+                <br>
+                <div>
+                    <div class="ui inverted basic blue segment m-padded-mini">
+                        <h4 class="ui header" style="margin-left: 30px">校园经历</h4>
+                    </div>
+                    <div class="ui container">
+                        <div class="ui three column grid">
+                            <div class="ui center aligned column">
+                                <h4>2019-10~2019-11</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>校园运动会</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>运动员</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <ul>
+                            <li>参加运动会</li>
+                            <li>团队取得学校排名第二</li>
+                        </ul>
+                    </div>
+                    <div class="ui divider"></div>
+                    <div class="ui container">
+                        <div class="ui three column grid">
+                            <div class="ui center aligned column">
+                                <h4>2022-6-11</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>社会无偿献血</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>志愿者</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <ul>
+                            <li>参加无偿献血</li>
+                            <li>为社会贡献自己微薄力量</li>
+                        </ul>
+                    </div>
+                    <div class="ui divider"></div>
+                    <div class="ui container">
+                        <div class="ui three column grid">
+                            <div class="ui center aligned column">
+                                <h4>2022-4</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>小项目开发</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>小组组长</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <ul>
+                            <li>担任小组组长</li>
+                            <li>负责项目的规划</li>
+                            <li>负责项目的日程安排</li>
+                            <li>负责项目的数据库搭建</li>
+                            <li>负责项目的前端页面开发</li>
+                            <li>负责项目的后端实现</li>
+                            <li>负责项目的报告</li>
+                        </ul>
+                    </div>
+                    <div class="ui divider"></div>
+                    <div class="ui container">
+                        <div class="ui three column grid">
+                            <div class="ui center aligned column">
+                                <h4>2020-2022</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>组织健身活动</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>活动发起人</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <ul>
+                            <li>呼吁健身，强健体魄，积极向上。</li>
+                            <li>带领小组成员，监督小组成员。</li>
+                        </ul>
+                    </div>
+                    <div class="ui divider"></div>
+                    <div class="ui container">
+                        <div class="ui three column grid">
+                            <div class="ui center aligned column">
+                                <h4>2022-5</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>山东省蓝桥杯大学生程序设计竞赛</h4>
+                            </div>
+                            <div class="ui center aligned column">
+                                <h4>参赛者</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <ul>
+                            <li>大学生程序设计大赛，Python组</li>
+                            <li>省二等奖</li>
+                        </ul>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <div class="ui inverted basic blue segment m-padded-mini">
+                        <h4 class="ui header" style="margin-left: 30px">技能特长</h4>
+                    </div>
+                    <div class="ui center aligned container">
+                        <h2 class="ui header">计算机</h2>
+                    </div>
+                    <p>
+                        <span style="font-weight: bold">基础部分：</span>
+                    </p>
+                    <ul>
+                        <li>熟悉常用的办公软件，包括Microsoft Word，Microsoft Excel，Microsoft PowerPoint</li>
+                        <li>熟悉常用图片处理软件Photoshop</li>
+                    </ul>
+                    <p>
+                        <span style="font-weight: bold">中级部分：</span><br>
+                    </p>
+                    <ul>
+                        <li>能够解决常见的计算机故障，包括硬件故障，系统故障等。</li>
+                        <li>能够解决常见的网络问题，网络故障等。</li>
+                    </ul>
+                    <p>
+                        <span style="font-weight: bold">专业部分：</span>
+                    </p>
+                    <div class="ui two column grid">
+                        <div class="ui center aligned column">
+                            <ul>
+                                <li>JavaSE</li>
+                                <li>JavaEE</li>
+                                <li>Spring</li>
+                                <li>SpringMvc</li>
+                                <li>SpringBoot</li>
+                                <li>Mybatis</li>
+                            </ul>
+                        </div>
+                        <div class="ui center aligned column">
+                            <ul>
+                                <li>MybatisPlus</li>
+                                <li>前端设计</li>
+                                <li>前端开发</li>
+                                <li>数据库表结构设计</li>
+                                <li>Python程序设计</li>
+                                <li>Linux</li>
+                                <li>Kali-Linux</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ui divider"></div>
+                    <div class="ui center aligned container">
+                        <h2 class="ui header">团队能力</h2>
+                    </div>
+                    <p>
+                        <span style="font-weight: bold">团队精神：</span>
+                        <span>承担责任，统筹合作，沟通协作，活泼友善，团结一致。</span>
+                    </p>
+                    <p>
+                        <span style="font-weight: bold">领导能力：</span>
+                        <span>在开发过程中能够合理分配任务，担当老大角色，任务进度实时监督，组员认可，老师认可。</span>
+                    </p>
+                    <p>
+                        <span style="font-weight: bold">个人能力：</span>
+                        <span>在参与团队开发时能够服从组长安排，完成个人任务，并帮助组员完成难点攻克。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<!--底部-->
+<footer th:replace="~{_fragments :: footer}">
+
+</footer>
+</body>
+<th:block th:replace="~{_fragments :: script}">
+
+</th:block>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('#PayButton').popup({
+        popup: $('.PayQR.popup'),
+        position: 'top center'
+    });
+    $('#WeChatButton').popup({
+        popup: $('.MakeFriendByWechat.popup'),
+        on: 'click',
+        position: 'top center'
+    });
+    $('#QQButton').popup({
+        popup: $('.MakeFriendByQQ.popup'),
+        on: 'click',
+        position: 'top center'
+    })
+
+</script>
+</html>

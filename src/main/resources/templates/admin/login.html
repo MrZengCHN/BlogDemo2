@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <link href="/static/css/me.css" rel="stylesheet" th:href="@{/css/me.css}">
+    <style type="text/css">
+        body {
+            background-color: #DADADA;
+        }
+
+        body > .grid {
+            height: 100%;
+        }
+
+        .image {
+            margin-top: -100px;
+        }
+
+        .column {
+            max-width: 450px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal header">博客后台管理登录</h2>
+        <form class="ui large form" th:action="@{'/admin/login'}">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input id="username" name="username" placeholder="邮箱" type="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input id="password" name="password" placeholder="密码" type="password">
+                    </div>
+                </div>
+                <div class="ui fluid large teal submit button" id="Login">登录</div>
+            </div>
+        </form>
+        <div id="Message">
+
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+<script>
+    $(document)
+        .ready(function () {
+            $('.ui.form')
+                .form({
+                    fields: {
+                        username: {
+                            identifier: 'username',
+                            rules: [
+                                {
+                                    type: 'empty',
+                                    prompt: 'Please enter your e-mail'
+                                },
+                                {
+                                    type: 'username',
+                                    prompt: 'Please enter a valid e-mail'
+                                }
+                            ]
+                        },
+                        password: {
+                            identifier: 'password',
+                            rules: [
+                                {
+                                    type: 'empty',
+                                    prompt: 'Please enter your password'
+                                },
+                                {
+                                    type: 'length[6]',
+                                    prompt: 'Your password must be at least 6 characters'
+                                }
+                            ]
+                        }
+                    }
+                })
+            ;
+        })
+    ;
+    $('#Login').click(function () {
+        $.ajax({
+            url: '/admin/login',
+            type: 'POST',
+            data: {
+                username: $('#username').val(),
+                password: $('#password').val(),
+            },
+            resultType: "JSON",
+            success: function (result) {
+                if (result.code !== 200) {
+                    const Message = document.getElementById("Message");
+                    Message.innerHTML = "<div class=\"ui error message\">\n" +
+                        "                <h2 class=\"ui header\">\n" + result.message +
+                        "                    \n" +
+                        "                </h2>\n" +
+                        "            </div>"
+                } else {
+                    alert(result.message)
+                    window.location.href = "blogs"
+                }
+            },
+            error: function (result) {
+                alert(result.message);
+            }
+        })
+    })
+</script>
+</body>
+</html>

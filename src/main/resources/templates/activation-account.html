@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+<body>
+
+<div class="ui container">
+    <div class="ui center aligned basic segment">
+        <h2 class="ui teal header">账号激活 Email验证</h2>
+    </div>
+    <div class="ui basic segment">
+        <h3 class="ui header">这封邮件是由 <i class="ui teal header">MrZeng</i> 发送的</h3>
+        <p>收到这封邮件，是由于您在 <a>MrZengBlog</a>进行评论。</p>
+        <p>如果您没有访问 <a>MrZengBlog</a>，请忽略此邮件。</p>
+        <h3 class="ui blue header">评论说明：</h3>
+        <p>如果您在<a>MrZengBlog</a>进行了评论，请遵守言语规范：</p>
+        <p>尊重他人：使用尊重的语气和措辞，避免使用侮辱性或歧视性语言。</p>
+        <p>注意措辞：言辞要准确、简洁、明确，不要使用口头语或缩写。</p>
+        <p>使用正式、礼貌的称呼，如“您好”、“请”、“谢谢”。</p>
+        <p>捍卫语言文化：尊重并维护本国语言文化，不使用低俗、庸俗、谩骂等不良语言。</p>
+        <p>愿您遵守规范。</p>
+        <p>您的评论内容：</p>
+        <h4 th:text="${comment}"></h4>
+        <p>您只需要点击下面的链接就可以展示您的评论了！</p>
+        <p><a th:href="@{${activationUrl}}">展示您的评论！</a></p>
+        <p>或者您可以等待管理员确认您的评论规范后展示您的评论!</p>
+        <br>
+        <p>感谢您的访问，祝您生活愉快！</p>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+</body>
+</html>

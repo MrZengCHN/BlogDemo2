@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_admin::head(~{::title})}">
+    <meta charset="UTF-8">
+    <title>管理系统</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+</head>
+<body>
+<nav th:replace="~{_admin::menu(1)}">
+
+</nav>
+<!--中间内容-->
+<div class="ui teal attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a class="item" href="blogs_input.html" th:href="@{/admin/blogsInput}">发布</a>
+            <a class="active item" href="blogs.html" th:href="@{/admin/blogs}">管理</a>
+        </div>
+    </div>
+</div>
+<div class="animate__animated animate__fadeIn">
+    <br>
+    <div class="ui center aligned basic stackable container grid">
+        <form action="#" class="ui form" method="post">
+            <div class="ui basic fields segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input class="ui input" id="title" name="title" placeholder="标题" type="text">
+                        <i class="terminal icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui selection dropdown">
+                        <input id="" name="type" type="hidden">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">
+                            分类
+                        </div>
+                        <div class="menu">
+                            <div class="item" th:onclick="'setTypeId('+${0}+')'" th:value="0">全部</div>
+                            <th:block th:each="type:${types}">
+                                <div class="item" th:onclick="'setTypeId('+${type.id}+')'" th:text="${type.name}"
+                                     th:value="${type.id}">错误日志
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox" style="margin-top: 18%">
+                        <input id="recommend" name="recommend" type="checkbox">
+                        <label for="recommend">推荐</label>
+                    </div>
+                </div>
+                <div class="ui field">
+                    <button class="ui basic icon teal button m-margin-mini" onclick="GetBlogList()" type="button">
+                        <i class="search icon"></i>搜索
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="ui basic container grid segment">
+        <table class="ui basic center aligned celled table">
+            <thead>
+            <tr>
+                <th>Flag</th>
+                <th>序号</th>
+                <th>标题</th>
+                <th>类型</th>
+                <th>推荐</th>
+                <th>声明</th>
+                <th>赞赏</th>
+                <th>评论</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="blog,iterStat : ${blogs}">
+                <td th:text="${blog.flag}"></td>
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${blog.title}"></td>
+                <td th:text="${blog.type != null ? blog.type.name : '未知类型'}"></td>
+                <td th:text="${blog.recommend == true} ? '√' : '×' "></td>
+                <td th:text="${blog.shareStatement == true} ? '√' : '×' "></td>
+                <td th:text="${blog.appreciation == true} ? '√' : '×' "></td>
+                <td th:text="${blog.commentTabled == true} ? '√' : '×' "></td>
+                <td th:text="${#temporals.format(blog.creatTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${#temporals.format(blog.updateTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td>
+                    <div class="ui mini message" th:classappend="${blog.published == true} ? 'success':''">
+                        <p th:text="${blog.published == true} ? '发布' : '保存'"></p>
+                    </div>
+                </td>
+
+                <td>
+                    <a class="ui teal mini button" th:href="@{/admin/blogUpdate(blogId=${blog.id})}">编辑</a>
+                    <a class="ui red mini button" th:onclick="'setDeleteBlogId('+${blog.id}+')'">删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="12">
+                    <div class="ui mini pagination menu">
+                        <a class="item" th:href="@{/admin/blogs(page=${page}-1,typeId=${typeId},title=${title})}">
+                            <i class="left chevron icon"></i>
+                        </a>
+                        <th:block th:each=" pagei : ${Page!=0} ? ${#numbers.sequence(1,Page)} : null ">
+                            <a class="item" th:classappend="${page == pagei} ? 'active'"
+                               th:href="@{/admin/blogs(page=${pagei},typeId=${typeId},title=${title})}"
+                               th:text="${pagei}"></a>
+                        </th:block>
+                        <a class="item" th:href="@{/admin/blogs(page=${page}+1,typeId=${typeId},title=${title})}">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                    <a class="ui mini right floated aligned basic teal button" target="_blank"
+                       th:href="@{/admin/blogsInput}">新增<i
+                            class="right floated add icon"></i></a>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+<div class="ui mini modal" id="deleteBlogPositive">
+    <div class="ui center aligned segment">
+        <h2 class="ui header">是否删除该博客</h2>
+        <div class="ui divider"></div>
+        <div class="actions">
+            <div class="ui two column grid">
+                <div class="center aligned column">
+                    <button class="ui black deny button" type="button">返回</button>
+                </div>
+                <div class="center aligned column">
+                    <button class="ui teal positive button" onclick="deleteBlog()" type="button">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<footer th:replace="~{_admin::footer}">
+
+</footer>
+</body>
+<th:block th:replace="~{_admin::script}">
+
+</th:block>
+<script>
+    let typeId = 0;
+    let blogId = 0;
+
+    function setDeleteBlogId(Bid) {
+        blogId = Bid
+        $('#deleteBlogPositive').modal('show')
+    }
+
+
+    function setTypeId(Tid) {
+        typeId = Tid;
+    }
+
+    function GetBlogList() {
+        open("/admin/blogs?" + "typeId=" + typeId + "&title=" + $('#title').val() + "&page=1", "_self")
+    }
+
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('#UserMenuButton').popup({
+        popup: $('.UserMenu.popup'),
+        on: 'click',
+        position: 'bottom center'
+    });
+    $('.ui.dropdown').dropdown();
+
+    function deleteBlog() {
+        $.ajax({
+            url: "/admin/blogRemove",
+            type: "POST",
+            data: {
+                id: blogId
+            },
+            resultType: "JSON",
+            success: function (result) {
+                if (result.code === 200) {
+                    alert(result.message)
+                    window.location.replace("/admin/blogs")
+                } else {
+                    alert(result.message)
+                }
+            },
+            error: function () {
+                alert("错误")
+            }
+        })
+    }
+</script>
+</html>

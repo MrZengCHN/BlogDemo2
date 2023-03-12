@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments :: head(~{::title})}">
+    <meta charset="UTF-8">
+    <title>标签</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <link href="/static/css/me.css" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="~{_fragments :: menu(3)}">
+</nav>
+<!--中间内容-->
+<div class="ui animate__animated animate__fadeIn">
+    <br>
+    <div class="ui container">
+        <!--分类-->
+        <!--类别标签-->
+
+        <div class="ui segment">
+            <div class="ui segment">
+                <div class="ui two column center aligned grid">
+                    <div class="column">
+                        <h3 class="ui teal header">标签</h3>
+                    </div>
+                    <div class="column">
+                        共 <h3 class="ui orange header m-inline-block" th:text="${tags.size}">14</h3> 个
+                    </div>
+                </div>
+            </div>
+            <!--单个分类-->
+            <div class="ui basic segment">
+                <th:block th:each="tag:${tags}">
+                    <div class="ui small basic labeled button m-margin-mini" tabindex="0">
+                        <a class="ui small basic button" th:classappend="${tagId==tag.id} ? 'blue' : ''"
+                           th:href="@{/tags(tagId=${tag.id})}">
+                            <i class="fork icon"></i>
+                            <th:block th:text="${tag.name}"></th:block>
+                        </a>
+                        <div class="ui small basic left pointing label" th:classappend="${tagId==tag.id} ? 'blue' : ''">
+                            <p>
+                                <th:block th:text="${tag.blogs.size}"></th:block>
+                            </p>
+                        </div>
+                    </div>
+                </th:block>
+
+            </div>
+
+
+        </div>
+        <!--blog列表-->
+        <div class="ui teal top attached segment">
+            <div th:if="${#arrays.isEmpty(blogs)}">
+                <div class="ui center aligned container">
+                    <h2 class="ui teal header">没有找到哦~</h2>
+                </div>
+            </div>
+            <th:block th:each="blog:${blogs}">
+                <div class="ui segment" th:onclick="'getBlog('+${blog.id}+')'">
+                    <div class="ui mobile reversed stackable grid">
+                        <div class="eleven wide column">
+                            <h3 class="ui header" th:text="${blog.title}"></h3>
+                            <p th:utext="${blog.content}"></p>
+                            <!--博客发布作者时间-->
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <div class="ui horizontal list">
+                                        <div class="item">
+                                            <img class="ui avatar image" src="/static/images/头像.jpg"
+                                                 th:src="@{/images/头像.jpg}">
+                                            <div class="content">
+                                                <p class="header" th:text="${blog.user.nickname}"></p>
+                                                <i class="time icon"></i>
+                                                <th:block
+                                                        th:text="${#temporals.format(blog.creatTime,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+                                                <i class="eye icon right aligned"></i>
+                                                <th:block th:text="${blog.views}"></th:block>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column">
+                                    <a class="ui blue tiny basic label" href="#" target="_blank"
+                                       th:text="${blog.type.name}"></a>
+                                </div>
+                                <!--标签-->
+                                <div class=" five wide column">
+                                    <th:block th:if="${!#arrays.isEmpty(blog.tags)}">
+                                        <th:block th:each="tag:${blog.tags}">
+                                            <label class="ui basic left pointing teal mini label"
+                                                   th:text="${tag.name}"></label>
+                                        </th:block>
+                                    </th:block>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="five wide column">
+                            <a href="blog.html" target="_blank">
+                                <img alt="" class="ui rounded image" style="margin: auto;width: auto"
+                                     th:src="${blog.firstPicture}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+
+        </div>
+        <!--底部分页-->
+        <div class="ui bottom attached segment">
+            <div class="ui center aligned container">
+
+                <div class="ui mini pagination menu">
+                    <a class="item" th:href="@{/tags(page=${page}-1,tagId=${tagId})}">
+                        <i class="left chevron icon"></i>
+                    </a>
+                    <th:block th:each=" pagei : ${Page!=0} ? ${#numbers.sequence(1,Page)} : null ">
+                        <a class="item" th:classappend="${page == pagei} ? 'active'"
+                           th:href="@{/tags(page=${pagei},tagId=${tagId})}" th:text="${pagei}"></a>
+                    </th:block>
+                    <a class="item" th:href="@{/tags(page=${page}+1,tagId=${tagId})}">
+                        <i class="right chevron icon"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+<!--底部-->
+<footer th:replace="~{_fragments :: footer}">
+</footer>
+</body>
+<th:block th:replace="~{_fragments :: script}">
+</th:block>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('#PayButton').popup({
+        popup: $('.PayQR.popup'),
+        position: 'top center'
+    });
+
+
+</script>
+</html>

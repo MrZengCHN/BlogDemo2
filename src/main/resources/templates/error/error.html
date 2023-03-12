@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_error::head(~{::title})}">
+    <meta charset="UTF-8">
+    <title>error</title>
+</head>
+<body>
+<nav th:replace="~{_error :: menu(0)}">
+
+</nav>
+<div class="ui center aligned container">
+    <div class="ui basic segment">
+        <h1 class="ui red header">错误：</h1>
+        <div class="ui left aligned segment">
+            <div class="ui teal header"><p th:utext="'Failed Request Url : ' + ${url}"></p></div>
+            <div class="ui teal header"><p th:utext="'Exception : ' + ${exception}"></p></div>
+            <ul>
+                <li th:each="st:${stackTrace}"><span th:utext="${st}"></span></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+<footer th:replace="~{_error::footer}">
+
+</footer>
+<th:block th:replace="~{_error::script}">
+
+</th:block>
+</body>
+</html>

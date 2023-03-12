@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <link href="/static/css/me.css" rel="stylesheet" th:href="@{/css/me.css}">
+    <style type="text/css">
+        body {
+            background-color: #DADADA;
+        }
+
+        body > .grid {
+            height: 100%;
+        }
+
+        .image {
+            margin-top: -100px;
+        }
+
+        .column {
+            max-width: 450px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal header">新用户注册</h2>
+        <form class="ui large form" id="user">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="mail icon"></i>
+                        <input id="email" name="email" placeholder="邮箱" type="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="bug icon"></i>
+                        <input id="username" name="username" placeholder="用户名" type="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input id="nickname" name="nickname" placeholder="昵称" type="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input id="password" name="password" placeholder="密码" type="password">
+                    </div>
+                </div>
+                <button class="ui fluid large teal button" id="create" type="button">注册</button>
+            </div>
+            <div class="ui error message">
+
+            </div>
+        </form>
+        <div id="Message">
+
+        </div>
+        <div class="ui message">
+            已有账户？ <a th:href="@{/admin/login}">登录</a>
+        </div>
+
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+<script>
+
+    $('.ui.form')
+        .form({
+            fields: {
+                email: {
+                    identifier: 'email',
+                    rules: [
+                        {
+                            type: 'email',
+                            prompt: '请输入正确的邮箱地址'
+                        }
+                    ]
+                },
+                username: {
+                    identifier: 'username',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: '用户名不能为空'
+                        }
+                    ]
+                },
+                nickname: {
+                    identifier: 'nickname',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: '昵称不能为空'
+                        },
+                        {
+                            type: 'length[3]',
+                            prompt: '昵称长度不能小于3'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'length[6]',
+                            prompt: '密码长度必须大于6位'
+                        }
+                    ]
+                }
+            },
+            onSuccess: function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/createUser',
+                    data: $('#user').serialize(),
+                    success: function (result) {
+                        if (result.code === 200) {
+                            alert(result.message + "，跳转登录页面")
+                            window.location.replace("/admin/login")
+                        } else {
+                            alert(result.message)
+                        }
+                    },
+                    error: function (result) {
+                        alert(result.message);
+                    }
+                })
+            }
+        });
+    $('#create').click(function () {
+        $('.ui.form').form('validate form');
+    })
+</script>
+</body>
+</html>

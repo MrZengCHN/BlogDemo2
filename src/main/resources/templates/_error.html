@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:replace="${title}">详情页</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+    <link href="/static/css/me.css" rel="stylesheet" th:href="@{/css/me.css}">
+    <link href="/static/css/typo.css" rel="stylesheet" th:href="@{/css/typo.css}">
+    <link href="/static/lib/prim/prism.css" rel="stylesheet" th:href="@{/lib/prim/prism.css}">
+    <link href="/static/lib/tocbot/tocbot.css" rel="stylesheet" th:href="@{/lib/tocbot/tocbot.css}">
+</head>
+<body>
+<nav class="ui inverted attached segment m-append-tb-mini" th:fragment="menu(n)">
+    <div class="ui container"></div>
+    <div class="ui inverted secondary stackable menu">
+        <h2 class="ui teal header item"><i class="sitemap icon"></i> MrZengCHN</h2>
+
+    </div>
+    <a class="ui menu toggle black icon button m-top-right m-mobile-show" href="#" id="menuButton">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<footer class="ui inverted vertical segment m-append-tb-massive" th:fragment="footer">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <img alt="" class="ui centered rounded image" src="../static/images/weixin.png"
+                     style="width: 8em" th:src="@{/images/weixin.png}">
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a class="item" href="#">Java全栈工程师的日常</a>
+                    <a class="item" href="#">编程改变生活</a>
+                    <a class="item" href="#">今天遇到个傻蛋</a>
+                    <a class="item" href="#">项目心得</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header">联系我</h4>
+                <div class="ui inverted link list">
+                    <a class="item" href="#">Email1 : mrzeng1164334031@gmail.com</a>
+                    <a class="item" href="#">Email2 : mrzeng1164334031@qq.com</a>
+                    <a class="item" href="#">QQ : 1164334031</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header">关于博客</h4>
+                <div class="ui inverted link list">
+                    <p>这是我的个人博客,用于展示和交流编程技术.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="ui inverted section divider"></div>
+
+        <p><i class="cn flag"></i> © MrZengCHN.com, 2022 - 2023</p>
+    </div>
+</footer>
+
+<th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <script src="/static/lib/prim/prism.js" th:src="@{/lib/prim/prism.js}"></script>
+    <script src="/static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="/static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.3/jquery.scrollTo.min.js"></script>
+    <script src="/static/lib/waypoints/jquery.waypoints.min.js"
+            th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+</th:block>
+
+</body>
+</html>
