@@ -1,15 +1,15 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://43.143.207.78/MyBlog?serverTimezone=Asia/Shanghai&useUnicode=utf8&useSSL=false
-    username: root
-    password: zeng010718
+    url: "Your url"
+    username: "Your username"
+    password: "Your password"
   mail:
     protocol: smtp
     host: smtp.163.com
     port: 25
-    username: mrzeng1164334031@163.com
-    password: ZOLGFFUIHYMICQAX
+    username: "Your Email"
+    password: "YourEmail smtp Password"
     default-encoding: utf-8
     properties:
       mail:
