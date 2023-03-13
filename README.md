@@ -4,3 +4,7 @@
 其中使用了Thymeleaf模板引擎，SemanticUI 和 jQuery.js开发前端页面。
 
 后端使用SpringBoot ，MybatisPlus 。
+
+-----
+
+本项目开源，仅供学习。
